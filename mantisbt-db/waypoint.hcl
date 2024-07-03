@@ -8,7 +8,7 @@ runner {
   profile = "common-odr"
   data_source "git" {
     url                         = "https://github.com/ansforge/forge-mantisbt.git"
-    ref                         = "var.datacenter"
+    ref                         = "gitref"
     path                        = "mantisbt-db"
     ignore_changes_outside_path = true
   }
@@ -25,7 +25,7 @@ runner {
 
 app "forge-mantisbt-db" {
   build {
-    use "docker-pull" {
+    use "docker-ref" {
       image = var.database_image
       tag   = var.database_tag
     }

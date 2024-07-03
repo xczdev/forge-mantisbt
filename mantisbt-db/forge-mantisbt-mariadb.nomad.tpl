@@ -52,12 +52,12 @@ job "forge-mantisbt-db" {
         destination = "secrets/file.env"
         env         = true
         data        = <<EOH
-{{with secret "${vault_secrets_engine_name}/mariadb"}}
+{{with secret "${vault_secrets_engine_name}"}}
 MARIADB_USER="{{.Data.data.mariadb_username}}"
 MARIADB_ROOT_PASSWORD="{{.Data.data.mariadb_rootpassword}}"
 MARIADB_PASSWORD="{{.Data.data.mariadb_password}}"
+MARIADB_DATABASE="{{.Data.data.database_name}}"
 {{end}}
-MARIADB_DATABASE="platines"
 EOH
       }
 
